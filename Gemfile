@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'foundation-rails'
 gem 'simple_form'
 gem 'devise'
+gem 'launchy'
 
 group :development do
   gem 'listen', '~> 3.0.5'
