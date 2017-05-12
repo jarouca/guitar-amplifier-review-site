@@ -10,6 +10,7 @@ gem 'foundation-rails'
 gem 'simple_form'
 gem 'devise'
 gem 'launchy'
+gem 'selenium-webdriver', '~> 2.53.4'
 
 group :development do
   gem 'listen', '~> 3.0.5'
