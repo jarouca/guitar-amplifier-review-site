@@ -21,12 +21,12 @@ feature 'user adds an amplifier' do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Sign In'
-    visit root_path
     click_link 'Add Amplifier'
     fill_in 'Manufacturer', with: 'Fender'
     fill_in 'Model', with: '5F2-A Princeton'
     fill_in 'Speaker', with: 'Jensen Alnico 8 inch'
     fill_in 'Tube Set', with: '5Y3, 6V6, 12AX7'
+    fill_in 'Description', with: 'Sounds great, it is a good little practice/recording amp.'
 
     click_button 'Submit Amplifier'
     expect(page).to have_content('Amplifier submitted for review, thank you.')

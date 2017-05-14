@@ -12,7 +12,7 @@ feature 'user updates their profile information' do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Sign In'
-    click_link 'Edit Information'
+    click_link 'Edit Profile'
     fill_in 'Password', with: 'newpassword'
     fill_in 'Password confirmation', with: 'newpassword'
     fill_in 'Current password', with: user.password

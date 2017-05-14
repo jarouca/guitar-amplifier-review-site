@@ -3,5 +3,7 @@ FactoryGirl.define do
     sequence(:email) {|n| "person#{n}@example.com"}
     password 'password'
     password_confirmation 'password'
+
+    # association :amplifier, factory: :amplifier
   end
 end

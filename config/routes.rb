@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  resources :amplifiers
   devise_for :users
-  root 'users#index'
+
+  resources :users do
+    resources :amplifiers
+  end
+
+  resources :amplifiers, only: [:index]
+
+
+  # devise_for :users
+
+  root 'amplifiers#index'
 end

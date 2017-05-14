@@ -8,12 +8,13 @@ feature 'user deletes their account' do
 
   scenario 'authenticated user deletes account' do
     user = FactoryGirl.create(:user)
+    # user = User.create(email: 'user@example.com', password: 'password', password_confirmation: 'password')
     visit 'users/sign_in'
     click_link 'Sign In'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Sign In'
-    click_link 'Edit Information'
+    click_link 'Edit Profile'
     click_link 'Cancel my account'
 
     expect(page).to have_content('Bye! Your account has been successfully cancelled. We hope to see you again soon.')
