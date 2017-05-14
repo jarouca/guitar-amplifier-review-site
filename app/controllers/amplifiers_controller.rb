@@ -1,4 +1,8 @@
 class AmplifiersController < ApplicationController
+  def show
+    @amplifier = Amplifier.find(params[:id])
+  end
+
   def new
     @amplifier = Amplifier.new
     @user = current_user
@@ -17,7 +21,7 @@ class AmplifiersController < ApplicationController
   end
 
   def index
-    @amplifiers = Amplifier.all
+    @amplifiers = Amplifier.order(id: :desc)
   end
 
   private

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :amplifiers
   end
 
-  resources :amplifiers, only: [:index]
+  resources :amplifiers, only: [:index, :show]
 
 
   # devise_for :users

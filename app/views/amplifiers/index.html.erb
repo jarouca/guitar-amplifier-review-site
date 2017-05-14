@@ -1,7 +1,6 @@
 <h4>Amplifiers:</h4>
 <ul>
-<% @amplifiers.each do |amplifier| %>
-  <li><%= amplifier.manufacturer %>, <%= amplifier.model %></li>
-<% end %>
-
+  <% @amplifiers.each do |amplifier| %>
+    <li><%= link_to "#{amplifier.manufacturer}, #{amplifier.model}", amplifier_path(amplifier) %></li>
+  <% end %>
 </ul>
