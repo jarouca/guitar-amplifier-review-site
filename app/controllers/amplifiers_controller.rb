@@ -2,6 +2,14 @@ class AmplifiersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   # before_action :authorize_user, except: [:index, :show, :new, :create]
 
+  def destroy
+    amplifier = Amplifier.find(params[:id])
+    flash[:notice] = 'Amplifier deleted successfully.'
+    if amplifier.destroy
+      redirect_to root_path
+    end
+  end
+
   def show
     @amplifier = Amplifier.find(params[:id])
   end

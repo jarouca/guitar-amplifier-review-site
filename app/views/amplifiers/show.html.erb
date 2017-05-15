@@ -7,5 +7,10 @@
 </Li>
 
 <% if current_user && @amplifier.user_id == current_user.id %>
-  <div><%= link_to 'Edit Amplifier', edit_user_amplifier_path(current_user) %></div>
+  <div>
+    <%= link_to 'Edit Amplifier', edit_user_amplifier_path(current_user) %>
+  </div>
+  <div>
+    <%= link_to 'Delete Amplifier', user_amplifier_path(current_user), method: :delete %>
+  </div>
 <% end %>
