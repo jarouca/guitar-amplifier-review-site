@@ -28,7 +28,7 @@ feature 'user adds an amplifier' do
     fill_in 'Tube Set', with: '5Y3, 6V6, 12AX7'
     fill_in 'Description', with: 'Sounds great, it is a good little practice/recording amp.'
 
-    click_button 'Submit Amplifier'
+    click_button 'Create Amplifier'
     expect(page).to have_content('Amplifier submitted for review, thank you.')
   end
 
@@ -41,7 +41,7 @@ feature 'user adds an amplifier' do
     click_button 'Sign In'
     visit root_path
     click_link 'Add Amplifier'
-    click_button 'Submit Amplifier'
+    click_button 'Create Amplifier'
 
     expect(page).to have_content("Manufacturer can't be blank")
     expect(page).to have_content("Model can't be blank")

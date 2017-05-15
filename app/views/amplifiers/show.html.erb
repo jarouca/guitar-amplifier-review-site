@@ -5,3 +5,7 @@
   <li>Tube Set: <%= @amplifier.tube_set %></Li>
   <li>Description: <%= @amplifier.description %></li>
 </Li>
+
+<% if current_user && @amplifier.user_id == current_user.id %>
+  <div><%= link_to 'Edit Amplifier', edit_user_amplifier_path(current_user) %></div>
+<% end %>
