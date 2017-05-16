@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :amplifiers, except: [:index, :show]
+    resources :reviews, except: [:index, :show]
   end
 
   resources :amplifiers, only: [:index, :show] do

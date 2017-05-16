@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
   belongs_to :amplifier
+  belongs_to :user
 
   validates :body, presence: true
   validates :amplifier_id, presence: true

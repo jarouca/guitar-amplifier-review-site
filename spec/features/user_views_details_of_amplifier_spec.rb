@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'user views details of an amplifier' do
-  # As auser
+  # As a user
   # I want to view the details about an amplifier
   # So that I can get more information about it
   #

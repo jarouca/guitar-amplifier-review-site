@@ -8,6 +8,7 @@ feature 'user reviews an amplifier' do
   # Acceptance criteria:
   # * I must be signed in to review an amplifier
   # * I must be able to submit a review from the amplifier's show page
+  # * I must then be redirected to the amplifier's show page and see the review listed there
 
   scenario 'an authenticated user successfully submits a review' do
     user = FactoryGirl.create(:user)
