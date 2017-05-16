@@ -6,6 +6,10 @@
   <li>Description: <%= @amplifier.description %></li>
 </Li>
 
+<% if current_user %>
+  <%= link_to 'Review Amplifier', new_amplifier_review_path(@amplifier) %>
+<% end %>
+
 <% if current_user && @amplifier.user_id == current_user.id %>
   <div>
     <%= link_to 'Edit Amplifier', edit_user_amplifier_path(current_user) %>
@@ -14,3 +18,9 @@
     <%= link_to 'Delete Amplifier', user_amplifier_path(current_user), method: :delete %>
   </div>
 <% end %>
+
+<ul>
+  <% @reviews.each do |review| %>
+    <li><%= review.body %></li>
+  <% end %>
+</ul>

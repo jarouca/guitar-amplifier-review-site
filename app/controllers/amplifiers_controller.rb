@@ -12,6 +12,7 @@ class AmplifiersController < ApplicationController
 
   def show
     @amplifier = Amplifier.find(params[:id])
+    @reviews = Review.where(amplifier_id: @amplifier).find_each
   end
 
   def new
