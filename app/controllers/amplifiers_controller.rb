@@ -20,7 +20,6 @@ class AmplifiersController < ApplicationController
     @user = current_user
   end
 
-
   def create
     @amplifier = Amplifier.new(amplifier_params)
     @amplifier.user_id = params[:user_id]

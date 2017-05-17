@@ -22,6 +22,13 @@
 <h1>Reviews:</h1>
 <ul>
   <% @reviews.each do |review| %>
-    <li><%= review.body %></li>
+    <li>
+      <%= review.body %>
+        <% if current_user && review.user_id == current_user.id %>
+          <div>
+            <%= link_to 'Edit Review', edit_user_review_path(review, review_id: review.id) %>
+          </div>
+        <% end %>
+    </li>
   <% end %>
 </ul>

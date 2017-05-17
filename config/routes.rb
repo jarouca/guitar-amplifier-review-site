@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :amplifiers, only: [:index, :show] do
-    resources :reviews, only: [:new, :create]
+    resources :reviews, only: [:new, :create, :edit, :update]
   end
 
   root 'amplifiers#index'

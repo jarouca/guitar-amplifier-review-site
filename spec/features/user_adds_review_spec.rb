@@ -9,7 +9,7 @@ feature 'user reviews an amplifier' do
   # * I must be signed in to review an amplifier
   # * I must be able to submit a review from the amplifier's show page
   # * I must then be redirected to the amplifier's show page and see the review listed there
-
+  # * I should receive errors if I fail to supply the required informatio
   scenario 'an authenticated user successfully submits a review' do
     user = FactoryGirl.create(:user)
     visit 'users/sign_in'
@@ -26,6 +26,22 @@ feature 'user reviews an amplifier' do
 
     expect(page).to have_content('Review submitted successfully')
     expect(page).to have_content('I agree with the description, this amp is great for recording, it breaks up wonderfully at lower levels')
+  end
+
+  scenario 'required information is not supplied' do
+    user = FactoryGirl.create(:user)
+    visit 'users/sign_in'
+    click_link 'Sign In'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign In'
+    amp = FactoryGirl.create(:amplifier, manufacturer: 'Fender', model: 'Princeton')
+    visit root_path
+    click_link 'Fender, Princeton'
+    click_link 'Review Amplifier'
+    click_button 'Create Review'
+
+    expect(page).to have_content("Body can't be blank")
   end
 
   scenario 'an unauthenticated user is unable to submit a review' do
