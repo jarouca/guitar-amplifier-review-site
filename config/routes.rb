@@ -3,11 +3,11 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :amplifiers, except: [:index, :show]
-    resources :reviews, except: [:index, :show]
+    resources :reviews, except: [:index, :show, :destroy]
   end
 
   resources :amplifiers, only: [:index, :show] do
-    resources :reviews, only: [:new, :create, :edit, :update]
+    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
   end
 
   root 'amplifiers#index'

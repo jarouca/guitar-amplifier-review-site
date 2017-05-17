@@ -4,8 +4,10 @@ class AmplifiersController < ApplicationController
 
   def destroy
     amplifier = Amplifier.find(params[:id])
-    flash[:notice] = 'Amplifier deleted successfully.'
+    Review.where(amplifier_id: amplifier).destroy_all
+
     if amplifier.destroy
+      flash[:notice] = 'Amplifier deleted successfully.'
       redirect_to root_path
     end
   end

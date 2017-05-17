@@ -8,6 +8,7 @@ feature 'user updates a review' do
   # Acceptance criteria:
   # * I need to be signed in and I can only edit reviews that I submitted
   # * I must be able to access the update form from amplifier's show page
+  # * I should receive error messages if I don't provide the required information
 
   scenario 'authenticated user successfully updates review' do
     user = FactoryGirl.create(:user)

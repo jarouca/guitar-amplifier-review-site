@@ -27,15 +27,25 @@ def edit
 end
 
 def update
-  review = Review.find(params[:id])
-  review.update(review_params)
-  amplifier = Amplifier.find(params[:amplifier_id])
+  @review = Review.find(params[:id])
+  @review.update(review_params)
+  @amplifier = Amplifier.find(params[:amplifier_id])
 
-  if review.save
+  if @review.save
     flash[:notice] = 'Review updated successfully'
-    redirect_to amplifier
+    redirect_to @amplifier
   else
     render 'edit'
+  end
+end
+
+def destroy
+  review = Review.find(params[:review_id])
+
+
+  if review.destroy
+    flash[:notice] = 'Review deleted successfully'
+    redirect_to amplifier_path
   end
 end
 

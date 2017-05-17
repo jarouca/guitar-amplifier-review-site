@@ -28,6 +28,9 @@
           <div>
             <%= link_to 'Edit Review', edit_user_review_path(review, review_id: review.id) %>
           </div>
+          <div>
+            <%= link_to 'Delete Review', amplifier_review_path(review, review_id: review.id), method: :delete %>
+          </div>
         <% end %>
     </li>
   <% end %>
