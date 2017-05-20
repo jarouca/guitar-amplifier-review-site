@@ -24,14 +24,31 @@
   <% @reviews.each do |review| %>
     <li>
       <%= review.body %>
-        <% if current_user && review.user_id == current_user.id %>
-          <div>
-            <%= link_to 'Edit Review', edit_user_review_path(review, review_id: review.id) %>
-          </div>
-          <div>
-            <%= link_to 'Delete Review', amplifier_review_path(review, review_id: review.id), method: :delete %>
-          </div>
-        <% end %>
+      <div>Up Votes: <%= @up_votes.count %></div>
+      <div>Down Votes: <%= @down_votes.count %></div>
+
+      <% if current_user && Vote.find_by(user_id: current_user.id) == nil %>
+        <div>
+          <%= button_to 'Up Vote', votes_path(review_id: review.id, amplifier_id: @amplifier.id), method: :post %>
+        </div>
+        <div>
+          <%= button_to 'Down Vote', votes_path(up_vote: false, review_id: review.id, amplifier_id: @amplifier.id), method: :post %>
+        </div>
+      <% elsif current_user && Vote.find_by(user_id: current_user.id, up_vote: false) != nil %>
+        <div><%= button_to 'Up Vote', edit_vote_path(review_id: review.id, amplifier_id: @amplifier.id) %></div>
+      <% elsif current_user && Vote.find_by(user_id: current_user.id, up_vote: true) %>
+        <div><%= button_to 'Down Vote', edit_vote_path(review_id: review.id,
+        amplifier_id: @amplifier.id) %></div>
+      <% end %>
+
+  <% if current_user && review.user_id == current_user.id %>
+        <div>
+          <%= link_to 'Edit Review', edit_user_review_path(review, review_id: review.id) %>
+        </div>
+        <div>
+          <%= link_to 'Delete Review', amplifier_review_path(review, review_id: review.id), method: :delete %>
+        </div>
+      <% end %>
     </li>
   <% end %>
 </ul>

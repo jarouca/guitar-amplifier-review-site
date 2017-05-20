@@ -10,5 +10,13 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
   end
 
+  resources :votes
+
+  namespace :api do
+    namespace :v1 do
+      resources :votes
+    end
+  end
+
   root 'amplifiers#index'
 end

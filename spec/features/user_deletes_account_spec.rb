@@ -8,7 +8,6 @@ feature 'user deletes their account' do
 
   scenario 'authenticated user deletes account' do
     user = FactoryGirl.create(:user)
-    # user = User.create(email: 'user@example.com', password: 'password', password_confirmation: 'password')
     visit 'users/sign_in'
     click_link 'Sign In'
     fill_in 'Email', with: user.email

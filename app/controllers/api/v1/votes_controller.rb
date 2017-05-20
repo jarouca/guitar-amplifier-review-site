@@ -1,6 +1,5 @@
 class Api::V1::VotesController < Api::V1::ApiController
   def create
-    binding.pry
     vote = Vote.new(vote_params)
     if vote.save
       render json: :nothing, status: :created, location: api_v1_votes_path(vote)
