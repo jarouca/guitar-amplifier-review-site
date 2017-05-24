@@ -1,12 +1,14 @@
 class VotesController < ApplicationController
   before_action :authenticate_user!
 
-  def edit
-    vote = Vote.find_by(user_id: current_user.id)
-    vote.toggle!(:up_vote)
-    @amplifier = Amplifier.find(params[:amplifier_id])
+  def destroy
+    review = Review.find(params[:id])
+    @amplifier = Amplifier.find(review.amplifier_id)
 
-    if vote.save
+    if Vote.find_by(user_id: current_user.id, review_id: params[:id]) 
+      Vote.find_by(user_id: current_user.id, review_id: params[:id]).destroy
+      redirect_to @amplifier and return
+    else
       redirect_to @amplifier
     end
   end

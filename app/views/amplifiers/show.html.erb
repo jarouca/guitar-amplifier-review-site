@@ -34,7 +34,9 @@
         <div>
           <%= button_to 'Down Vote', votes_path(up_vote: false, review_id: review.id, amplifier_id: @amplifier.id), method: :post %>
         </div>
-
+        <div>
+          <%= button_to 'Delete Vote', vote_path(review), method: :delete %>
+        </div>
       <% end %>
 
   <% if current_user && review.user_id == current_user.id %>
