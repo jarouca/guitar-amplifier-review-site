@@ -15,8 +15,6 @@ class AmplifiersController < ApplicationController
   def show
     @amplifier = Amplifier.find(params[:id])
     @reviews = Review.where(amplifier_id: @amplifier).find_each
-    @down_votes = Vote.where(up_vote: false)
-    @up_votes = Vote.where(up_vote: true)
   end
 
   def new

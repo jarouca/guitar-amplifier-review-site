@@ -54,7 +54,11 @@ feature 'user votes on a review' do
     click_link amp.manufacturer, amp.model
     click_button 'Up Vote'
 
-    page.should_not have_selector(:link_or_button, 'Up Vote')
+    expect(page).to have_content('Up Votes: 1')
+
+    click_button 'Up Vote'
+
+    expect(page).to have_content('Up Votes: 1')
   end
 
   scenario 'authenticated user unable to down vote twice' do
@@ -70,7 +74,11 @@ feature 'user votes on a review' do
     click_link amp.manufacturer, amp.model
     click_button 'Down Vote'
 
-    page.should_not have_selector(:link_or_button, 'Down Vote')
+    expect(page).to have_content('Down Votes: 1')
+
+    click_button 'Down Vote'
+
+    expect(page).to have_content('Down Votes: 1')
   end
 
   scenario 'unathenticated user unable to vote on review' do
