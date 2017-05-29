@@ -5,7 +5,7 @@ class VotesController < ApplicationController
     review = Review.find(params[:id])
     @amplifier = Amplifier.find(review.amplifier_id)
 
-    if Vote.find_by(user_id: current_user.id, review_id: params[:id]) 
+    if Vote.find_by(user_id: current_user.id, review_id: params[:id])
       Vote.find_by(user_id: current_user.id, review_id: params[:id]).destroy
       redirect_to @amplifier and return
     else
@@ -22,8 +22,12 @@ class VotesController < ApplicationController
       if params[:up_vote] != vote.up_vote.to_s
       # change vote's up_vote attribute to match most recent vote
         vote.toggle!(:up_vote)
+        @up_votes = Vote.where(review_id: params[:review_id], up_vote: true).count
+        @down_votes = Vote.where(review_id: params[:review_id], up_vote: false).count
         redirect_to @amplifier and return
       else #redirect back to amplifier show page without changing vote and without creating an additional vote (user cannot vote twice)
+        @up_votes = Vote.where(review_id: params[:review_id], up_vote: true).count
+        @down_votes = Vote.where(review_id: params[:review_id], up_vote: false).count
         redirect_to @amplifier and return
       end
     #elsif user has not previously voted on this review, and they down voted, create vote with down vote attribute
@@ -36,13 +40,9 @@ class VotesController < ApplicationController
     end
 
     if vote.save
+      @up_votes = Vote.where(review_id: params[:review_id], up_vote: true).count
+      @down_votes = Vote.where(review_id: params[:review_id], up_vote: false).count
       redirect_to @amplifier
     end
   end
 end
-  #if user down voted and user hasn't voted at all yet:
-  #if user up voted and user hasn't voted at all yet:
-  #if user changes up vote to down vote
-  #if user changes down vote to up vote
-  #if user up votes but already up voted
-  #if user down voted but already down voted

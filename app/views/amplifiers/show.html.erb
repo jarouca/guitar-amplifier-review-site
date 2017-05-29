@@ -24,18 +24,22 @@
   <% @reviews.each do |review| %>
     <li>
       <%= review.body %>
-      <div>Up Votes: <%= Vote.where(review_id: review.id, up_vote: true).count %></div>
-      <div>Down Votes: <%= Vote.where(review_id: review.id, up_vote: false).count %></div>
+      <div id="up-vote-<%= review.id %>">Up Votes:
+        <%= review.up_votes.count %>
+      </div>
+      <div id="down-vote-<%= review.id %>">Down Votes:
+        <%= review.down_votes.count %>
+      </div>
 
       <% if current_user %>
         <div>
-          <%= button_to 'Up Vote', votes_path(up_vote: true, review_id: review.id, amplifier_id: @amplifier.id), method: :post %>
+          <%= button_to 'Up Vote', votes_path(up_vote: true, review_id: review.id, amplifier_id: @amplifier.id), method: :post, form_class: "vote" %>
         </div>
         <div>
-          <%= button_to 'Down Vote', votes_path(up_vote: false, review_id: review.id, amplifier_id: @amplifier.id), method: :post %>
+          <%= button_to 'Down Vote', votes_path(up_vote: false, review_id: review.id, amplifier_id: @amplifier.id), method: :post, form_class: "vote" %>
         </div>
         <div>
-          <%= button_to 'Delete Vote', vote_path(review), method: :delete %>
+          <%= button_to 'Delete Vote', votes_path(review_id: review.id), method: :delete, form_class: "delete-vote" %>
         </div>
       <% end %>
 
