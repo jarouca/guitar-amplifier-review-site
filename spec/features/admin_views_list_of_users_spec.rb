@@ -24,6 +24,13 @@ feature 'admin views list of users' do
   end
 
   scenario 'non-admin unable to view list of users' do
+    user = FactoryGirl.create(:user)
+    visit 'users/sign_in'
+    click_link 'Sign In'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign In'
 
+    expect(page).to_not have_content('View Users')
   end
 end
