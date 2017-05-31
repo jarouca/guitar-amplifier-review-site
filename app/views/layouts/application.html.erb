@@ -10,6 +10,14 @@
 
   <body>
     <nav>
+      <div>Search by Manufacturer:
+        <%= form_tag(amplifiers_path, method: :get) do %>
+          <p>
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "Search", name: nil %>
+          </p>
+        <% end %>
+      </div>
       <ul>
         <% if user_signed_in? %>
           <li><%= link_to 'Add Amplifier', new_user_amplifier_path(current_user.id) %></li>

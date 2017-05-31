@@ -39,7 +39,7 @@ class AmplifiersController < ApplicationController
 
   def edit
     @amplifier = Amplifier.find(params[:id])
-    
+
     @user = current_user
   end
 
@@ -56,7 +56,11 @@ class AmplifiersController < ApplicationController
   end
 
   def index
-    @amplifiers = Amplifier.order(id: :desc)
+    if params[:search]
+      @amplifiers = Amplifier.where("manufacturer ILIKE ?", params[:search])
+    else
+      @amplifiers = Amplifier.order(id: :desc)
+    end
   end
 
   private
@@ -69,8 +73,5 @@ class AmplifiersController < ApplicationController
     :tube_set,
     )
   end
-
-  # def authorize_user
-  #   current_user.id == params[:user_id] || current_user.admin?
-  # end
+  
 end
