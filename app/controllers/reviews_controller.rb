@@ -28,24 +28,30 @@ end
 
 def update
   @review = Review.find(params[:id])
-  @review.update(review_params)
-  @amplifier = Amplifier.find(params[:amplifier_id])
+  if @review.user_id == current_user.id || current_user.role == "admin"
+    @review.update(review_params)
+    @amplifier = Amplifier.find(params[:amplifier_id])
 
-  if @review.save
-    flash[:notice] = 'Review updated successfully'
-    redirect_to @amplifier
-  else
-    render 'edit'
+    if @review.save
+      flash[:notice] = 'Review updated successfully'
+      redirect_to @amplifier
+    else
+      render 'edit'
+    end
   end
 end
 
 def destroy
   review = Review.find(params[:review_id])
 
+  if review.user_id == current_user.id || current_user.role == "admin"
 
-  if review.destroy
-    flash[:notice] = 'Review deleted successfully'
-    redirect_to amplifier_path
+
+
+    if review.destroy
+      flash[:notice] = 'Review deleted successfully'
+      redirect_to amplifier_path
+    end
   end
 end
 
