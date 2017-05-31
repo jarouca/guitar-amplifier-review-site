@@ -10,13 +10,15 @@
   <%= link_to 'Review Amplifier', new_amplifier_review_path(@amplifier) %>
 <% end %>
 
-<% if current_user && @amplifier.user_id == current_user.id %>
-  <div>
-    <%= link_to 'Edit Amplifier', edit_user_amplifier_path(current_user) %>
-  </div>
-  <div>
-    <%= link_to 'Delete Amplifier', user_amplifier_path(current_user), method: :delete %>
-  </div>
+<% if current_user %>
+  <% if @amplifier.user_id == current_user.id || current_user.role == "admin" %>
+    <div>
+      <%= link_to 'Edit Amplifier', edit_user_amplifier_path(current_user) %>
+    </div>
+    <div>
+      <%= link_to 'Delete Amplifier', user_amplifier_path(current_user), method: :delete %>
+    </div>
+  <% end %>
 <% end %>
 
 <h1>Reviews:</h1>

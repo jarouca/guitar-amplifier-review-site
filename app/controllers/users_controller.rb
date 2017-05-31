@@ -1,22 +1,23 @@
 class UsersController < ApplicationController
 
   def destroy
-    @users = User.where.not(id: current_user.id)
-    user = User.find(params[:id])
+    if current_user.role == "admin"
+      @users = User.where.not(id: current_user.id)
+      user = User.find(params[:id])
 
-    if user.destroy
-      flash[:notice] = 'User successfully deleted'
-      render :index
+      if user.destroy
+        flash[:notice] = 'User successfully deleted'
+        render :index
+      end
     end
   end
 
   def index
-    @users = User.where.not(id: current_user.id)
+    if current_user.role == "admin"
+      @users = User.where.not(id: current_user.id)
 
-    render :index
-  end
+        render :index
+      end
+    end
 
-
-  def show
-  end
 end

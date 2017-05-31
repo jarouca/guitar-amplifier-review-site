@@ -4,11 +4,14 @@ class AmplifiersController < ApplicationController
 
   def destroy
     amplifier = Amplifier.find(params[:id])
-    Review.where(amplifier_id: amplifier).destroy_all
 
-    if amplifier.destroy
-      flash[:notice] = 'Amplifier deleted successfully.'
-      redirect_to root_path
+    if amplifier.user_id == current_user.id || current_user.role == "admin"
+      Review.where(amplifier_id: amplifier).destroy_all
+
+      if amplifier.destroy
+        flash[:notice] = 'Amplifier deleted successfully.'
+        redirect_to root_path
+      end
     end
   end
 
@@ -36,6 +39,7 @@ class AmplifiersController < ApplicationController
 
   def edit
     @amplifier = Amplifier.find(params[:id])
+    
     @user = current_user
   end
 
