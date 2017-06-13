@@ -81,6 +81,12 @@ h3 {
   margin-top: 10px;
 }
 
+.alert {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+}
+
 .title, .search-label, .search-field, .submit-tag {
   float: left;
   margin-right: 10px;

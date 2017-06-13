@@ -1,8 +1,8 @@
 <%= form_for [@user, @amplifier] do |f| %>
 
   <% if @amplifier.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@amplifier.errors.count, "error") %> prohibited this amplifier from being saved:</h2>
+    <div id="error_explanation" class="alert">
+      <p><%= pluralize(@amplifier.errors.count, "error") %> prohibited this amplifier from being saved:</p>
       <ul>
       <% @amplifier.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
