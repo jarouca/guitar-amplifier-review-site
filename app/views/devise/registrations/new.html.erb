@@ -4,9 +4,17 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, label: 'Password Confirmation', required: true %>
+    <div class="row">
+      <div class="medium-4 columns">
+        <%= f.input :email, required: true, autofocus: true %>
+      </div>
+      <div class="medium-4 columns">
+        <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+      </div>
+      <div class="medium-4 columns">
+        <%= f.input :password_confirmation, label: 'Password Confirmation', required: true %>
+      </div>
+    </div>
   </div>
 
   <div class="form-actions">

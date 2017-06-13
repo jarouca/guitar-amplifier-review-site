@@ -24,8 +24,10 @@ feature 'user updates an amplifier' do
     fill_in 'Model', with: '5E3 Deluxe'
     fill_in 'Speaker', with: 'Jensen 12 inch Alnico'
     fill_in 'Tube Set', with: '5Y3, 6V6, 6V6, 12AX7, 12AX7'
+    fill_in 'Description', with: 'This amp really screams!'
     click_button 'Update Amplifier'
 
+    expect(page).to have_content('This amp really screams!')
     expect(page).to have_content('Amplifier edited successfully')
     expect(page).to have_content('5E3 Deluxe')
     expect(page).to have_content('Jensen 12 inch Alnico')

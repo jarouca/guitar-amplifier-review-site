@@ -1,6 +1,34 @@
-<h4>Amplifiers:</h4>
-<ul>
-  <% @amplifiers.each do |amplifier| %>
-    <li><%= link_to "#{amplifier.manufacturer}, #{amplifier.model}", amplifier_path(amplifier) %></li>
-  <% end %>
-</ul>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <h2 class="welcome-header">Welcome to Ampage!</h2>
+
+      <p class="welcome-paragraph">
+        Ampage is a place to share and discuss the unique tones and qualities of different guitar amplifiers. Each amplifier has been posted for review by an Ampage member. Feel free to browse our list of amplifiers below or search by a specific manufacturer. If you would like to submit an amplifier, share your thoughts on a currently listed amplifier or up vote/down vote a particular review, please sign up for an Ampage profile.
+      </p>
+
+    <div class="amps">
+      <div class="amps-header">
+        <h3>Amplifiers</h3>
+        <% if current_user %>
+          <div class="add-amplifier">
+            <%= link_to 'Add Amplifier', new_user_amplifier_path(current_user.id) %>
+          </div>
+          <% end %>
+      </div>
+      <ul>
+        <% @amplifiers.each do |amplifier| %>
+          <li class="amp-list">
+            <%= link_to "#{amplifier.manufacturer}, #{amplifier.model}", amplifier_path(amplifier) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </body>
+</html>

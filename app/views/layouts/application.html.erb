@@ -1,41 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ReviewSite</title>
-    <%= csrf_meta_tags %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <title><%= content_for?(:title) ? yield(:title) : "Review Site" %></title>
+    <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <nav>
-      <div>Search by Manufacturer:
-        <%= form_tag(amplifiers_path, method: :get) do %>
-          <p>
-            <%= text_field_tag :search, params[:search] %>
-            <%= submit_tag "Search", name: nil %>
+    <div class="top-bar">
+      <ul>
+        <li><h1 class="title"><a href="/">AMPAGE</a></h1></li>
+        <li class="search-label">Search by Manufacturer:</li>
+        <li class="search-field">
+          <%= form_tag(amplifiers_path, method: :get) do %>
+          <p><%= text_field_tag :search, params[:search] %></p>
+        </li>
+        <li class ="submit-tag">
+          <p><%= submit_tag "Search", name: nil %>
+              <% end %>
           </p>
-        <% end %>
-      </div>
+        </li>
+      </ul>
+
       <ul>
         <% if user_signed_in? %>
-          <li><%= link_to 'Add Amplifier', new_user_amplifier_path(current_user.id) %></li>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-          <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+          <li class="sign-out"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <li class="edit"><%= link_to 'Edit Profile', edit_user_registration_path %></li>
             <% if current_user.role == "admin" %>
-              <li><%= link_to 'View Users', users_path %></li>
+              <li class="view-users"><%= link_to 'View Users', users_path %></li>
             <% end %>
         <% else %>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+          <li class="sign-in"><%= link_to 'Sign In', new_user_session_path %></li>
+          <li class="sign-up"><%= link_to 'Sign Up', new_user_registration_path %></li>
         <% end %>
       </ul>
-    </nav>
+    </div>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= yield %>
+
+    <div class="row column">
+      <%= yield %>
+    </div>
 
     <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="/javascripts/application.js"></script>

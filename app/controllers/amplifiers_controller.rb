@@ -71,7 +71,8 @@ class AmplifiersController < ApplicationController
     :model,
     :speaker,
     :tube_set,
+    :description
     )
   end
-  
+
 end
