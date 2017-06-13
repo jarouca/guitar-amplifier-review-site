@@ -85,6 +85,7 @@ h3 {
   color: red;
   text-align: center;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .title, .search-label, .search-field, .submit-tag {
@@ -117,7 +118,7 @@ h3 {
 }
 
 
-.welcome-header, .amp-title {
+.welcome-header, .amp-title, .new-amp-title, .new-review-title, .edit-amplifier-title, .edit-review-title {
   text-align: center;
   padding: 20px;
 }
@@ -151,4 +152,39 @@ h3 {
   float: left;
   margin-right: 10px;
   padding-top: 5px;
+}
+
+.field {
+  margin-top: 10px;
+}
+
+.form-label {
+  width: 120px;
+}
+
+.form-label, .actions {
+  margin-left: 10px;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: bold;
+
+}
+
+.model-form-field {
+  margin-left: 55px;
+}
+
+.speaker-form-field {
+  margin-left: 40px;
+
+}
+
+.tube-form-field {
+  margin-left: 35px;
+}
+
+.description-form-field {
+  margin-left: 15px;
+}
+
+.field-with-errors {
 }

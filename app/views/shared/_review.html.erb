@@ -1,4 +1,3 @@
-<%= form_for [@amplifier, @review] do |f| %>
 
   <% if @review.errors.any? %>
     <div id="error_explanation" class="alert">
@@ -10,10 +9,11 @@
       </ul>
     </div>
   <% end %>
+<%= form_for [@amplifier, @review] do |f| %>
 
   <div class="field">
-    <%= f.label :body %>
-    <%= f.text_field :body %>
+    <%= f.label :body, class: "form-label" %>
+    <%= f.text_area :body, class: "form-field" %>
   </div>
 
   <div class="actions">

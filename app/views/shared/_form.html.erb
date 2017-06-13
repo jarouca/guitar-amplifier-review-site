@@ -1,4 +1,3 @@
-<%= form_for [@user, @amplifier] do |f| %>
 
   <% if @amplifier.errors.any? %>
     <div id="error_explanation" class="alert">
@@ -11,29 +10,31 @@
     </div>
   <% end %>
 
+<%= form_for [@user, @amplifier] do |f| %>
+
   <div class="field">
-    <%= f.label :manufacturer %>
-    <%= f.text_field :manufacturer %>
+    <%= f.label :manufacturer, class: "form-label" %>
+    <%= f.text_field :manufacturer, class: "form-field" %>
   </div>
 
   <div class="field">
-    <%= f.label :model %>
-    <%= f.text_field :model %>
+    <%= f.label :model, class: "form-label" %>
+    <%= f.text_field :model, class: "model-form-field" %>
   </div>
 
   <div class="field">
-    <%= f.label :speaker %>
-    <%= f.text_field :speaker %>
+    <%= f.label :speaker, class: "form-label" %>
+    <%= f.text_field :speaker, class: "speaker-form-field" %>
   </div>
 
   <div class="field">
-    <%= f.label :tube_set, "Tube Set"%>
-    <%= f.text_field :tube_set %>
+    <%= f.label :tube_set, "Tube Set", class: "form-label"%>
+    <%= f.text_field :tube_set, class: "tube-form-field" %>
   </div>
 
   <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
+    <%= f.label :description, class: "form-label" %>
+    <%= f.text_area :description, class: "description-form-field" %>
   </div>
 
   <div class="actions">
