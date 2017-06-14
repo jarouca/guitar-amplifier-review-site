@@ -1,8 +1,7 @@
-<h2>Sign up</h2>
+<h2 class="form-title">Sign up</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
-
   <div class="form-inputs">
     <div class="row">
       <div class="medium-4 columns">
@@ -14,12 +13,17 @@
       <div class="medium-4 columns">
         <%= f.input :password_confirmation, label: 'Password Confirmation', required: true %>
       </div>
+      </div>
     </div>
-  </div>
-
-  <div class="form-actions">
+    <div class="form-actions">
     <%= f.button :submit, "Sign Up" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<div class="links">
+  <%= render "devise/shared/links" %>
+</div>
+
+<div class="layout-pic">
+  <%= image_tag("eh_125_closeup.JPG") %>
+</div>

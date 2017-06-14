@@ -10,10 +10,11 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+
+
 
  */
+
 
 html, body, h1, h2, h3, h4, p, div, ul, li {
   padding: 0;
@@ -42,9 +43,7 @@ h3 {
   font-weight: bold;
 }
 
-.layout-pic img {
-  display: block;
-  margin: 0 auto 0 auto;
+.featured-image {
 }
 
 .amps-header, .reviews-header {

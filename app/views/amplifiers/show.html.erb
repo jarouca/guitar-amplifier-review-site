@@ -44,14 +44,15 @@
           <div class="delete-vote-button">
             <%= button_to 'Delete Vote', votes_path(review_id: review.id), method: :delete, form_class: "delete-vote" %>
           </div>
-
-          <% if review.user_id == current_user.id || current_user.role == "admin"%>
-            <div class="edit-review-link">
-              <%= link_to 'Edit Review', edit_user_review_path(review, review_id: review.id) %>
-            </div>
-            <div class="delete-review-link">
-              <%= link_to 'Delete Review', amplifier_review_path(review, review_id: review.id), method: :delete %>
-            </div>
+          <% if current_user %>
+            <% if review.user_id == current_user.id || current_user.role == "admin"%>
+              <div class="edit-review-link">
+                <%= link_to 'Edit Review', edit_user_review_path(review, review_id: review.id) %>
+              </div>
+              <div class="delete-review-link">
+                <%= link_to 'Delete Review', amplifier_review_path(review, review_id: review.id), method: :delete %>
+              </div>
+            <% end %>
           <% end %>
         </div>
       <% end %>
