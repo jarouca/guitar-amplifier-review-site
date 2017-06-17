@@ -163,26 +163,34 @@ h3 {
   padding-top: 5px;
 }
 
-.field {
+/*.field {
   margin-top: 10px;
-}
+}*/
 
 .form-label {
-  width: 120px;
+  /*width: 120px;*/
+  display: block;
 }
 
-.form-label, .actions {
+.new-amp-form, .new-review-form, .form-bottom {
+  margin-left: 20px;
+}
+
+.form-bottom {
+  padding-top: 50px;
+}
+/*.form-label, .actions {
   margin-left: 10px;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: bold;
-
 }
+*/
 
-.model-form-field {
+/*.model-form-field {
   margin-left: 55px;
-}
+}*/
 
-.speaker-form-field {
+/*.speaker-form-field {
   margin-left: 40px;
 
 }
@@ -193,7 +201,7 @@ h3 {
 
 .description-form-field {
   margin-left: 15px;
-}
+}*/
 
 .field-with-errors {
 }
@@ -226,7 +234,7 @@ label.collection_radio_buttons {
 }
 
 .field_with_errors {
-  background-color: #ff3333;
+  /*background-color: #ff3333;*/
 }
 
 .simple_form .error {

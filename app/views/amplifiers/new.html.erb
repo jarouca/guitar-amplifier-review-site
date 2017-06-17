@@ -2,7 +2,9 @@
 
 <h2 class="new-amp-title">New Amplifier</h2>
 
-<%= render 'shared/form', user: @user, amplifier: @amplifier %>
+<div class="new-amp-form">
+  <%= render 'shared/form', user: @user, amplifier: @amplifier %>
+</div>
 
 <div class="layout-pic">
   <%= image_tag("eh_125_interior.JPG") %>
