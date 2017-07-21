@@ -1,61 +1,54 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  </head>
-  <body>
-    <h2 class="amp-title"><%= @amplifier.manufacturer %> <%= @amplifier.model %></h2>
+<h2 class="amp-title"><%= @amplifier.manufacturer %> <%= @amplifier.model %></h2>
 
-    <div class="amp-details">
-      <ul>
-        <li><strong>Speaker:</strong> <%= @amplifier.speaker %></li>
-        <li><strong>Tube Set:</strong> <%= @amplifier.tube_set %></li>
-        <li><strong>Description:</strong> <%= @amplifier.description %></li>
-      </ul>
+<div class="amp-details">
+  <ul>
+    <li><strong>Speaker:</strong> <%= @amplifier.speaker %></li>
+    <li><strong>Tube Set:</strong> <%= @amplifier.tube_set %></li>
+    <li><strong>Description:</strong> <%= @amplifier.description %></li>
+  </ul>
 
-      <div class="amp-links">
-        <% if current_user %>
-              <%= link_to 'Review Amplifier', new_amplifier_review_path(@amplifier) %>
-          <% if @amplifier.user_id == current_user.id || current_user.role == "admin" %>
-              /
-              <%= link_to 'Edit Amplifier', edit_user_amplifier_path(current_user) %>
-              / <%= link_to 'Delete Amplifier', user_amplifier_path(current_user), method: :delete %>
-          <% end %>
-        <% end %>
+  <div class="amp-links">
+    <% if current_user %>
+          <%= link_to 'Review Amplifier', new_amplifier_review_path(@amplifier) %>
+      <% if @amplifier.user_id == current_user.id || current_user.role == "admin" %>
+          /
+          <%= link_to 'Edit Amplifier', edit_user_amplifier_path(current_user) %>
+          / <%= link_to 'Delete Amplifier', user_amplifier_path(current_user), method: :delete %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="review-section">
+  <h3>Reviews</h3>
+  <% @reviews.each do |review| %>
+    <div class="review">
+      <p><%= review.body %></p>
+      <div class="up-vote-button">
+        <%= button_to 'Up Vote', votes_path(up_vote: true, review_id: review.id, amplifier_id: @amplifier.id), method: :post, form_class: "vote" %>
       </div>
-    </div>
-
-    <div class="review-section">
-      <h3>Reviews</h3>
-      <% @reviews.each do |review| %>
-        <div class="review">
-          <p><%= review.body %></p>
-          <div class="up-vote-button">
-            <%= button_to 'Up Vote', votes_path(up_vote: true, review_id: review.id, amplifier_id: @amplifier.id), method: :post, form_class: "vote" %>
+      <div id="up-vote-<%= review.id %>" class="up-vote-count"><strong>Up Votes:</strong>
+        <%= review.up_votes.count %>
+      </div>
+      <div class="down-vote-button">
+        <%= button_to 'Down Vote', votes_path(up_vote: false, review_id: review.id, amplifier_id: @amplifier.id), method: :post, form_class: "vote" %>
+      </div>
+      <div id="down-vote-<%= review.id %>" class="down-vote-count"><strong>Down Votes:</strong>
+        <%= review.down_votes.count %>
+      </div>
+      <div class="delete-vote-button">
+        <%= button_to 'Delete Vote', votes_path(review_id: review.id), method: :delete, form_class: "delete-vote" %>
+      </div>
+      <% if current_user %>
+        <% if review.user_id == current_user.id || current_user.role == "admin"%>
+          <div class="edit-review-link">
+            <%= link_to 'Edit Review', edit_user_review_path(review, review_id: review.id) %>
           </div>
-          <div id="up-vote-<%= review.id %>" class="up-vote-count"><strong>Up Votes:</strong>
-            <%= review.up_votes.count %>
+          <div class="delete-review-link">
+            <%= link_to 'Delete Review', amplifier_review_path(review, review_id: review.id), method: :delete %>
           </div>
-          <div class="down-vote-button">
-            <%= button_to 'Down Vote', votes_path(up_vote: false, review_id: review.id, amplifier_id: @amplifier.id), method: :post, form_class: "vote" %>
-          </div>
-          <div id="down-vote-<%= review.id %>" class="down-vote-count"><strong>Down Votes:</strong>
-            <%= review.down_votes.count %>
-          </div>
-          <div class="delete-vote-button">
-            <%= button_to 'Delete Vote', votes_path(review_id: review.id), method: :delete, form_class: "delete-vote" %>
-          </div>
-          <% if current_user %>
-            <% if review.user_id == current_user.id || current_user.role == "admin"%>
-              <div class="edit-review-link">
-                <%= link_to 'Edit Review', edit_user_review_path(review, review_id: review.id) %>
-              </div>
-              <div class="delete-review-link">
-                <%= link_to 'Delete Review', amplifier_review_path(review, review_id: review.id), method: :delete %>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
+        <% end %>
       <% end %>
     </div>
-  </body>
-</html>
+  <% end %>
+</div>

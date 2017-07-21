@@ -81,13 +81,25 @@ feature 'user votes on a review' do
     expect(page).to have_content('Down Votes: 1')
   end
 
-  scenario 'unathenticated user unable to vote on review' do
+  scenario 'unathenticated user unable to down vote on review' do
     amp = FactoryGirl.create(:amplifier)
     review = FactoryGirl.create(:review, amplifier_id: amp.id)
     visit root_path
     click_link amp.manufacturer, amp.model
 
-    page.should_not have_selector(:link_or_button, 'Down Vote')
-    page.should_not have_selector(:link_or_button, 'Up Vote')
+    click_button 'Down Vote'
+
+    expect(page).to have_content('You need to sign in or sign up before continuing')
+  end
+
+  scenario 'unathenticated user unable to up vote on review' do
+    amp = FactoryGirl.create(:amplifier)
+    review = FactoryGirl.create(:review, amplifier_id: amp.id)
+    visit root_path
+    click_link amp.manufacturer, amp.model
+
+    click_button 'Up Vote'
+
+    expect(page).to have_content('You need to sign in or sign up before continuing')
   end
 end

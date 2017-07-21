@@ -3,6 +3,7 @@ class Api::V1::VotesController < Api::V1::ApiController
   skip_before_action :verify_authenticity_token
 
   def destroy
+    binding.pry
     if Vote.find_by(user_id: current_user.id, review_id: params["/votes?review_id"])
       Vote.find_by(user_id: current_user.id, review_id: params["/votes?review_id"]).destroy
     end
