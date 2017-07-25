@@ -10,9 +10,7 @@ This project uses the following libraries and frameworks:
 
 ## Demo
 
-For a live demo of the app, please visit: [Ampage](https://ampage.herokuapp.com/ Edit
-Add topics
-)
+For a live demo of the app, please visit: [Ampage](https://ampage.herokuapp.com)
 
 ## Setup
 
