@@ -10,7 +10,9 @@ This project uses the following libraries and frameworks:
 
 ## Demo
 
-For a live demo of the app, please visit: [Ampage]()
+For a live demo of the app, please visit: [Ampage](https://ampage.herokuapp.com/ Edit
+Add topics
+)
 
 ## Setup
 
@@ -21,10 +23,23 @@ To install, please run the following in your terminal:
 ### Set up Rails
 
 ```
-git clone 
+git clone https://github.com/jarouca/guitar-amplifier-review-site.git
 cd online-review-site
 bundle install
 rake db:create
 rake db:migrate
 ```
 
+## Running the application
+
+To run Ampage, please run the following command in your terminal from the online-review-site directory:
+
+`rails s`
+
+Now open your browser and enter localhost:3000 in your address bar.
+
+## Testing
+
+To run the test suite, please enter the following command from the online-review-site root directory:
+
+`rspec`
